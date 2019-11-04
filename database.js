@@ -1,5 +1,7 @@
 const mongoose=require('mongoose');
-const URI='mongodb://localhost/habitaciones';
+//const URI='mongodb+srv://admin:admin@cluster0-rvkzp.mongodb.net/reserva?retryWrites=true&w=majority';
+
+const URI='mongodb://localhost/reserva';
 
 mongoose.connect(URI)
 .then(db=>console.log('Conexion establecida'))

@@ -1,9 +1,10 @@
 const Controller=require('../controllers/empleado.controller');
 const router= require('express').Router();
 
-//Habitaciones.
+//CREACION DE UN EMPLEADO 
 router.post('/',Controller.registro);
 
+//VERIFICACION DE LOS DATOS PARA LOGIN
 router.post('/login/',Controller.login);
 
 module.exports=router;

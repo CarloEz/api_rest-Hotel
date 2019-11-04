@@ -1,15 +1,21 @@
-const ctrl={};
+const ctrl = {};
+const model = require('../models/servicio.model');
 
-ctrl.crearServicio=(req,res)=>{
-    res.json('servicio creada');
+ctrl.crearServicio = async (req, res) => {
+    const body = {
+        reserva:req.body.reserva,
+        tipo: req.body.tipo,
+        costo: req.body.costo
+    }
+
+    const servicio = new model(body);
+    await servicio.save();
+    res.json('servicio asignado al cliente');
 }
 
-ctrl.verlistado=(req,res)=>{
-    res.json('lista de servicios');
+ctrl.verlistado = async (req, res) => {
+    const listado = await model.find({ reserva: req.params.reserva })
+    res.json(listado);
 }
 
-ctrl.modificarServicio=(req,res)=>{
-    res.json('precio servicio modificada');
-}
-
-module.exports=ctrl;
+module.exports = ctrl;

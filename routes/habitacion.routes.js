@@ -1,11 +1,16 @@
 const habitacionController=require('../controllers/habitacion.controller');
 const router= require('express').Router();
 
-//Habitaciones.
-router.get('/',habitacionController.verlistado);
+//VER LISTADO DE HABITACIONES DISPONIBLES.
+router.get('/',habitacionController.verListado);
 
+//CREAR UNA HABITACION
 router.post('/',habitacionController.crearHabitacion);
 
-router.put('/actualizar/:id',habitacionController.modificarHabitacion);
+//ACTUALIZAR ESTADO DE HABITACIONES.
+router.put('/actualizar',habitacionController.modificarHabitacion);
+
+//VER LISTADO DE HABITACIONES NO DISPONIBLES 
+router.get('/ocupada',habitacionController.noDisponible);
 
 module.exports=router;

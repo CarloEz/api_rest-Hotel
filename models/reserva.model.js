@@ -10,7 +10,8 @@ const reservaSchema=new Schema({
     no_tarjeta:{type:Number},
     mes_vencimiento:{type:Number},
     anio_vencimiento:{type:Number},
-    cdv:{type:String}
+    cvc:{type:String},
+    total:{type:Number}
 })
 
 module.exports=mongoose.model('reserva',reservaSchema);
