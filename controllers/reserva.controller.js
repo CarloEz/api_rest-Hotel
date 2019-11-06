@@ -5,8 +5,8 @@ const moment = require('moment');
 
 ctrl.calcular_dias = async (req, res) => {
     //Tengo que ver el rango de dias entre las fechas ingreso y salida
-    var x = moment(req.body.fecha_llegada, "DD-MM-YYYY");
-    var y = moment(req.body.fecha_salida, "DD-MM-YYYY");
+    var x = moment(req.body.fecha_llegada, "YYYY-MM-DD");
+    var y = moment(req.body.fecha_salida, "YYYY-MM-DD");
     var duracion = moment.duration(y.diff(x)).asDays();
 
     if(duracion<0){
