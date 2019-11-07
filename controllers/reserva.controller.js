@@ -21,9 +21,6 @@ ctrl.calcular_dias = async (req, res) => {
 //Creacion de la reserva:
 ctrl.crearReserva = async (req, res) => {
 
-    let no_habitaciones = req.body.no_habitaciones;
-    let tipo = req.body.tipo;
-
     const bodyReserva = {
         DPI: req.body.DPI,
         fecha_llegada: req.body.fecha_llegada,
@@ -34,13 +31,15 @@ ctrl.crearReserva = async (req, res) => {
         mes_vencimiento: req.body.mes_vencimiento,
         anio_vencimiento: req.body.anio_vencimiento,
         cvc: req.body.cvc,
+        no_habitaciones = req.body.no_habitaciones,
+        tipo = req.body.tipo,
         total:req.body.total
     }
 
     const reserva = new model(bodyReserva);
     await reserva.save();
 
-    modificarEstadoHabitaciones(no_habitaciones,tipo);
+    modificarEstadoHabitaciones(bodyReserva.no_habitaciones,bodyReserva.tipo);
     res.json('reserva creada');
 }
 
@@ -48,7 +47,6 @@ ctrl.crearReserva = async (req, res) => {
 modificarEstadoHabitaciones = async (no_habitaciones, tipo_habitacion) => {
     const listado = await modelH.find({ estado: "disponible", tipo: tipo_habitacion });
 
-    console.log(listado);
     for (let i = 0; i < no_habitaciones; i++) {
         let habitacion={
             estado:"ocupada",
@@ -64,7 +62,6 @@ ctrl.verlistado = async (req, res) => {
     const listado = await model.find()
     res.json(listado);
 }
-
 
 
 ctrl.verReservasCliente=async(req,res)=>{

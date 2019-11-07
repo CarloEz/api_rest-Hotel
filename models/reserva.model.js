@@ -11,6 +11,8 @@ const reservaSchema=new Schema({
     mes_vencimiento:{type:Number},
     anio_vencimiento:{type:Number},
     cvc:{type:String},
+    tipo_habitacion:{type:String},
+    no_habitaciones:{type:Number},
     total:{type:Number}
 })
 
