@@ -32,7 +32,7 @@ ctrl.crearReserva = async (req, res) => {
         anio_vencimiento: req.body.anio_vencimiento,
         cvc: req.body.cvc,
         no_habitaciones : req.body.no_habitaciones,
-        tipo : req.body.tipo,
+        tipo_habitacion : req.body.tipo,
         total:req.body.total
     }
 
