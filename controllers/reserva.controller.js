@@ -31,8 +31,8 @@ ctrl.crearReserva = async (req, res) => {
         mes_vencimiento: req.body.mes_vencimiento,
         anio_vencimiento: req.body.anio_vencimiento,
         cvc: req.body.cvc,
-        no_habitaciones = req.body.no_habitaciones,
-        tipo = req.body.tipo,
+        no_habitaciones : req.body.no_habitaciones,
+        tipo : req.body.tipo,
         total:req.body.total
     }
 
