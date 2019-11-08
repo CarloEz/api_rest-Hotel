@@ -39,7 +39,7 @@ ctrl.crearReserva = async (req, res) => {
     const reserva = new model(bodyReserva);
     await reserva.save();
 
-    modificarEstadoHabitaciones(bodyReserva.no_habitaciones,bodyReserva.tipo);
+    modificarEstadoHabitaciones(bodyReserva.no_habitaciones,bodyReserva.tipo_habitacion);
     res.json('reserva creada');
 }
 
