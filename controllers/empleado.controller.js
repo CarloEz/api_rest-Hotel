@@ -23,6 +23,11 @@ ctrl.registro=async(req,res)=>{
     }
 }
 
+ctrl.empleados=async(req,res)=>{
+    const empleados=await model.find({rol:'recepcionista'});
+    res.json(empleados);
+}
+
 ctrl.login=async(req,res)=>{
     const usuario = await model.findOne({ correo: req.body.correo, codigo: req.body.codigo });
 
