@@ -36,20 +36,23 @@ ctrl.modificarHabitacion = async (req, res) => {
     //consulta a la base de datos para ver todas las habitaciones disponibles.
     //con un for de i =0 con el conteo de cuantas habitaciones dejaron de usarse por el cliente modificar el estado de la habitacion.
     const listado = await model.find({ estado: "ocupada" });
-
+    const numero = req.body.no_habitaciones;
     console.log(listado);
     if (listado.length>0) {
-        const numero = req.body.no_habitaciones;
-        for (let i = 0; i < numero; i++) {
-            let habitacion = {
-                no_habitacion: listado[i].no_habitacion,
-                estado: "disponible",
-                tipo: listado[i].tipo,
-                costo: listado[i].costo
+        if(listado.length==numero){
+            for (let i = 0; i < numero; i++) {
+                let habitacion = {
+                    no_habitacion: listado[i].no_habitacion,
+                    estado: "disponible",
+                    tipo: listado[i].tipo,
+                    costo: listado[i].costo
+                }
+                await model.findByIdAndUpdate(listado[i]._id, { $set: habitacion }, { new: true });
             }
-            await model.findByIdAndUpdate(listado[i]._id, { $set: habitacion }, { new: true });
+            res.json('Estado de habitaciones: disponibles');
+        }else{
+            res.json('Numero excedido de habitaciones');
         }
-        res.json('Estado de habitaciones: disponibles');
     } else {
         res.json('Escoja habitaciones ocupadas');
     }
